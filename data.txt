@@ -1,0 +1,23 @@
+﻿Dog|D001|Max|4|White|2026-09-12|Found as stray|72|German Shepherd|true|true
+Dog|D002|Kota|6|Black and Tan|2026-09-14|Transferred from another rescue|86|German Shepherd|true|true
+Dog|D003|Happy|3|Black and White|2026-09-16|Found as stray|78|Husky|true|true
+Dog|D004|Daisy|7|Yellow|2026-09-18|Owner surrender|67|Labrador Retriever|true|true
+Dog|D005|Cooper|2|Chocolate|2026-09-20|Owner surrender|91|Labrador Retriever|false|true
+Dog|D006|Roxy|5|Black and White|2026-09-22|Humane officer referral|45|Pitbull|true|false
+Dog|D007|Buddy|four|Black|2026-09-23|Owner surrender|68|Husky|true|true
+Cat|C001|Alley|3|Gray and White|2026-09-11|Found as stray|76|Domestic Shorthair|true|false
+Cat|C002|Oliver|5|Orange and White|2026-09-13|Owner surrender|63|Domestic Shorthair|true|true
+Cat|C003|Pepper|1|Black|2026-09-17|Found as stray|88|Domestic Shorthair|false|true
+Cat|C004|Milo|4|Gray|2026-09-19|Owner surrender|52|Maine Coon|true|true
+Cat|C005|Cleo|8|Brown|2026-09-21|Transferred from another rescue|39|Maine Coon|true|false
+Cat|C006|Nala|2|Seal Point|2026-09-24|Owner surrender|94|Siamese|true|true
+Rabbit|R001|Clover|2|White and Brown|2026-09-10|Found as stray|61|Holland Lop|true|true
+Rabbit|R002|Hazel|3|Gray and White|2026-09-15|Owner surrender|47|Holland Lop|true|true
+Rabbit|R003|Biscuit|1|White and Tan|2026-09-25|Found injured|82|Mini Rex|false|false
+Turtle|T001|Sheldon|9|2026-09-09|Owner surrender|70|Box Turtle|12.4
+Turtle|T002|Franklin|14|2026-09-16|Found injured|44|Box Turtle|15.8
+Turtle|T003|Penny|6|2026-09-23|Wildlife rehabilitation referral|89|Painted Turtle|10.7
+Owl|O001|Athena|3|2026-09-08|Wildlife rehabilitation referral|36|Barn Owl
+Owl|O002|Merlin|2|2026-09-18|Found injured|73|Barn Owl
+Owl|O003|Echo|4|2026-09-24|Wildlife rehabilitation referral|57|Barred Owl
+Dog|D001|Max|4|White|2026-09-12|Found as stray|72|German Shepherd|true|true
