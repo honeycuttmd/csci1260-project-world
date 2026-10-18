@@ -1,0 +1,11 @@
+LOG OPENED
+Happy Tails rescue log started.
+Animals loaded: 21
+Intake records created: 22
+Condition score updated for Roxy.
+Condition score updated for Cleo.
+LOG CLOSED - 5 LINES WRITTEN
+LOG OPENED
+Second logging session.
+This message was appended to the existing log.
+LOG CLOSED - 2 LINES WRITTEN
