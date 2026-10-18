@@ -8,6 +8,9 @@ public class MostUrgentFirst : IComparer<IntakeRecord>
     /// <summary>
     /// Compares two intake records by initial condition score and then by intake date.
     /// </summary>
+    /// <param name="a">The first intake record to compare.</param>
+    /// <param name="b">The second intake record to compare.</param>
+    /// <returns>A value indicating the relative sort order based on initial condition score and intake date.</returns>
     public int Compare(IntakeRecord a, IntakeRecord b)
     {
         // Check for null records before comparing their properties.

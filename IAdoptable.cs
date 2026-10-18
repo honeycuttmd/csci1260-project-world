@@ -5,6 +5,9 @@
 /// </summary>
 public interface IAdoptable
 {
+    /// <summary>
+    /// Defines the adoption fee for the animal.
+    /// </summary>
     public double AdoptionFee
     {
         get;
@@ -13,5 +16,6 @@ public interface IAdoptable
     /// <summary>
     /// Returns the animal's adoption profile.
     /// </summary>
+    /// <returns>Formatted adoption profile for the animal.</returns>
     public string GetAdoptionProfile();
 }

@@ -17,6 +17,19 @@ public class Cat : CompanionMammal, IAdoptable
         get { return 100; }
     }
 
+    /// <summary>
+    /// Creates a cat with its identifying information, physical characteristics, intake details, breed, spay/neuter status, and indoor-only status.
+    /// </summary>
+    /// <param name="animalId">Unique ID assigned to the cat.</param>
+    /// <param name="name">Cat's name.</param>
+    /// <param name="age">Cat's age in years.</param>
+    /// <param name="color">Cat's coat color.</param>
+    /// <param name="intakeDate">Date the cat entered the rescue center.</param>
+    /// <param name="intakeSource">Source from which the cat was received.</param>
+    /// <param name="conditionScore">Cat's initial condition score from 1 to 100.</param>
+    /// <param name="breed">Cat's breed.</param>
+    /// <param name="isSpayedNeutered">Indicates whether the cat is spayed or neutered.</param>
+    /// <param name="isIndoorOnly">Indicates whether the cat must remain indoors.</param>
     public Cat(
         string animalId,
         string name,
@@ -36,61 +49,73 @@ public class Cat : CompanionMammal, IAdoptable
     /// <summary>
     /// Returns a description of the cat, including its indoor-only status.
     /// </summary>
+    /// <returns>Formatted description of the cat.</returns>
     public override string Describe()
     {
-        return $"{base.Describe()} - Indoor Only: {IsIndoorOnly}";
+        return base.Describe() +
+            $", Indoor Only: {(IsIndoorOnly ? "Yes" : "No")}";
     }
 
     /// <summary>
-    /// Creates a summary of the cat's treatment history, including any care notes.
+    /// Creates a summary of the cat's current treatment needs based on its condition score.
     /// </summary>
+    /// <returns>Formatted treatment summary for the cat.</returns>
     public override string CreateTreatmentSummary()
     {
-        return $"Current Condition Score: {CurrentConditionScore}\nTreatment History:\n{GetCareHistory()}";
-    }
-
-    /// <summary>
-    /// Gets the daily care instructions for the cat.
-    /// </summary>
-    public override string GetDailyCareInstructions()
-    {
-        string instructions = "Provide regular meals, fresh water, and a clean litter box.";
-
-        if (IsIndoorOnly)
+        if (CurrentConditionScore < 50)
         {
-            instructions += " Ensure the cat has a safe indoor environment.";
+            return "Requires close monitoring and limited activity.";
+        }
+        else if (CurrentConditionScore < 75)
+        {
+            return "Condition is stable; moderate enrichment recommended.";
         }
         else
         {
-            instructions += " Allow supervised outdoor time if safe.";
+            return "Routine care and social interaction recommended.";
+        }
+    }
+
+    /// <summary>
+    /// Gets the daily care instructions for the cat based on its indoor status and condition score.
+    /// </summary>
+    /// <returns>Formatted set of daily care instructions for the cat.</returns>
+    public override string GetDailyCareInstructions()
+    {
+        List<string> instructions = new List<string>();
+
+        if (IsIndoorOnly)
+        {
+            instructions.Add("Ensure the cat has a safe indoor environment.");
+        }
+        else
+        {
+            instructions.Add("Allow supervised outdoor time if safe.");
         }
 
         if (CurrentConditionScore < 50)
         {
-            instructions += " Monitor the cat closely and limit activity.";
+            instructions.Add("Monitor the cat closely and limit activity.");
         }
         else if (CurrentConditionScore < 75)
         {
-            instructions += " Monitor the cat's condition and provide moderate enrichment.";
+            instructions.Add("Monitor the cat's condition and provide moderate enrichment.");
         }
         else
         {
-            instructions += " Ensure the cat has plenty of playtime and social interaction.";
+            instructions.Add("Ensure the cat has plenty of playtime and social interaction.");
         }
 
-        if (GetCareHistory() != "")
-        {
-            instructions += " Review the cat's treatment history and care notes before providing care.";
-        }
-
-        return instructions;
+        return string.Join(" ", instructions);
     }
 
     /// <summary>
     /// Gets the adoption profile for the cat.
     /// </summary>
+    /// <returns>Formatted adoption profile containing the cat's name, age, breed, and indoor-only status.</returns>
     public string GetAdoptionProfile()
     {
-        return $"{Name} is a {Age} year old {Breed}. Indoor Only: {IsIndoorOnly}";
+        return $"{Name} is a {Age} year old {Breed}\n" +
+           (IsIndoorOnly ? "Indoor Only" : "Not Indoor Only");
     }
 }

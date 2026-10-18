@@ -23,6 +23,17 @@ public class Turtle : RescueAnimal, IAdoptable
         get { return 50; }
     }
 
+    /// <summary>
+    /// Creates a turtle with its identifying information, intake details, species, and shell length.
+    /// </summary>
+    /// <param name="animalId">Unique ID assigned to the turtle.</param>
+    /// <param name="name">Turtle's name.</param>
+    /// <param name="age">Turtle's age in years.</param>
+    /// <param name="intakeDate">Date the turtle entered the rescue center.</param>
+    /// <param name="intakeSource">Source from which the turtle was received.</param>
+    /// <param name="conditionScore">Turtle's initial condition score from 1 to 100.</param>
+    /// <param name="species">Turtle's species.</param>
+    /// <param name="shellLengthCm">Turtle's shell length in centimeters.</param>
     public Turtle(
         string animalId,
         string name,
@@ -41,57 +52,69 @@ public class Turtle : RescueAnimal, IAdoptable
     /// <summary>
     /// Returns a description of the turtle, including its shell length.
     /// </summary>
+    /// <returns>Formatted description of the turtle.</returns>
     public override string Describe()
     {
-        return $"{base.Describe()} - Shell Length: {ShellLengthCm}cm";
+        return base.Describe() + 
+            $"{Species,-22}{"",-20}Shell Length: {ShellLengthCm:0.0} cm";
     }
 
     /// <summary>
-    /// Creates a summary of the turtle's treatment history, including any care notes.
+    /// Creates a summary of the turtle's current treatment needs based on its condition score.
     /// </summary>
+    /// <returns>Formatted treatment summary for the turtle.</returns>
     public override string CreateTreatmentSummary()
     {
-        return $"Current Condition Score: {CurrentConditionScore}\nTreatment History:\n{GetCareHistory()}";
+        if (CurrentConditionScore < 50)
+        {
+            return "Requires close monitoring and limited handling.";
+        }
+        else if (CurrentConditionScore < 75)
+        {
+            return "Condition is stable; regular care and monitoring recommended.";
+        }
+        else
+        {
+            return "Routine care and a healthy environment recommended.";
+        }
     }
 
     /// <summary>
-    /// Gets the daily care instructions for the turtle.
+    /// Gets the daily care instructions for the turtle based on its shell length and condition score.
     /// </summary>
+    /// <returns>Formatted set of daily care instructions for the turtle.</returns>
     public override string GetDailyCareInstructions()
     {
-        string instructions = "Provide a clean habitat with access to water and appropriate basking areas.";
+        List<string> instructions = new List<string>();
 
         if (ShellLengthCm < 11)
         {
-            instructions += " Monitor for growth and ensure proper nutrition.";
+            instructions.Add("Monitor for growth and ensure proper nutrition.");
         }
 
         if (CurrentConditionScore < 50)
         {
-            instructions += " Monitor the turtle closely and limit handling.";
+            instructions.Add("Monitor the turtle closely and limit handling.");
         }
         else if (CurrentConditionScore < 75)
         {
-            instructions += " Provide regular care and monitor for any health issues.";
+            instructions.Add("Provide regular care and monitor for any health issues.");
         }
         else
         {
-            instructions += " Maintain regular care and ensure a healthy environment.";
+            instructions.Add("Maintain regular care and ensure a healthy environment.");
         }
 
-        if (GetCareHistory() != "")
-        {
-            instructions += " Review the turtle's treatment history and care notes before providing care.";
-        }
-
-        return instructions;
+        return string.Join(" ", instructions);
     }
 
     /// <summary>
     /// Returns the adoption profile for the turtle.
     /// </summary>
+    /// <returns>Formatted adoption profile containing the turtle's name, age, species, and shell length.</returns>
     public string GetAdoptionProfile()
     {
-        return $"{Name} is a {Age} year old {Species}. Shell Length: {ShellLengthCm}cm";
+        return $"{Name} is a {Age} year old {Species}\n" +
+           $"Shell Length: {ShellLengthCm:0.0} cm";
     }
 }

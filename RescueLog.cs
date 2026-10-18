@@ -28,6 +28,7 @@ public class RescueLog : IDisposable
     /// <summary>
     /// Creates a rescue log using the specified file path.
     /// </summary>
+    /// <param name="path">The file path where the rescue log will be stored.</param>
     public RescueLog(string path)
     {
         _path = path;
@@ -55,6 +56,7 @@ public class RescueLog : IDisposable
     /// <summary>
     /// Writes a message to the log and updates the number of messages written.
     /// </summary>
+    /// <param name="message">The message to write to the rescue log.</param>
     public void Write(string message)
     {
         if (_isClosed)

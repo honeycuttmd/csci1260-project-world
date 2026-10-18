@@ -24,6 +24,12 @@ public class CareNote
         get { return _noteText; }
     }
 
+    /// <summary>
+    /// Initializes a new CareNote with the specified staff name, note date, and note text.
+    /// </summary>
+    /// <param name="staffName">Name of the staff member who authored the note.</param>
+    /// <param name="noteDate">Date and time of the note.</param>
+    /// <param name="noteText">Text content of the note.</param>
     public CareNote(string staffName, DateTime noteDate, string noteText)
     {
         if (string.IsNullOrWhiteSpace(staffName))
@@ -43,8 +49,13 @@ public class CareNote
     /// <summary>
     /// Returns the care note as a formatted string.
     /// </summary>
+    /// <returns>Formatted string containing the note date, staff member, and note text.</returns>
     public override string ToString()
     {
-        return $"{NoteDate:d} - {StaffName}: {NoteText}";
+        return string.Format(
+            "{0,-15}{1,-18}{2}",
+            NoteDate.ToString("MM/dd/yyyy"),
+            StaffName,
+            NoteText);
     }
 }

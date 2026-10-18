@@ -18,6 +18,16 @@ public class Owl : RescueAnimal
         get { return _isReleaseReady; }
     }
 
+    /// <summary>
+    /// Creates an owl with its identifying information, intake details, and species.
+    /// </summary>
+    /// <param name="animalId">Unique ID assigned to the owl.</param>
+    /// <param name="name">Owl's name.</param>
+    /// <param name="age">Owl's age in years.</param>
+    /// <param name="intakeDate">Date the owl entered the rescue center.</param>
+    /// <param name="intakeSource">Source from which the owl was received.</param>
+    /// <param name="conditionScore">Owl's initial condition score from 1 to 100.</param>
+    /// <param name="species">Owl's species.</param>
     public Owl(
         string animalId,
         string name,
@@ -34,54 +44,64 @@ public class Owl : RescueAnimal
     /// <summary>
     /// Returns a description of the owl, including its release readiness.
     /// </summary>
+    /// <returns>Formatted description of the owl.</returns>
     public override string Describe()
     {
-        return $"{base.Describe()} - Release Ready: {IsReleaseReady}";
+        return base.Describe() +
+            $"{Species,-22}{"",-20}Release Ready: {(IsReleaseReady ? "Yes" : "No")}";
     }
 
     /// <summary>
-    /// Creates a summary of the owl's treatment history, including any care notes.
+    /// Creates a summary of the owl's current treatment needs based on its condition score.
     /// </summary>
+    /// <returns>Formatted treatment summary for the owl.</returns>
     public override string CreateTreatmentSummary()
     {
-        return $"Current Condition Score: {CurrentConditionScore}\nTreatment History:\n{GetCareHistory()}";
-    }
-
-    /// <summary>
-    /// Gets the daily care instructions for the owl.
-    /// </summary>
-    public override string GetDailyCareInstructions()
-    {
-        string instructions = "Provide regular meals, fresh water, and a safe enclosure.";
-
-        if (!IsReleaseReady)
+        if (CurrentConditionScore < 50)
         {
-            instructions += " Monitor for signs of stress or illness.";
+            return "Requires close monitoring and limited activity.";
+        }
+        else if (CurrentConditionScore < 75)
+        {
+            return "Condition is stable; additional enrichment recommended.";
         }
         else
         {
-            instructions += " Prepare for potential release into the wild.";
+            return "Routine care recommended.";
+        }
+    }
+
+    /// <summary>
+    /// Gets the daily care instructions for the owl based on its release readiness and condition score.
+    /// </summary>
+    /// <returns>Formatted set of daily care instructions for the owl.</returns>
+    public override string GetDailyCareInstructions()
+    {
+        List<string> instructions = new List<string>();
+
+        if (!IsReleaseReady)
+        {
+            instructions.Add("Monitor for signs of stress or illness.");
+        }
+        else
+        {
+            instructions.Add("Prepare for potential release into the wild.");
         }
 
         if (CurrentConditionScore < 50)
         {
-            instructions += " Monitor the owl closely and limit activity.";
+            instructions.Add("Monitor the owl closely and limit activity.");
         }
         else if (CurrentConditionScore < 75)
         {
-            instructions += " Provide additional enrichment and socialization.";
+            instructions.Add("Provide additional enrichment and socialization.");
         }
         else
         {
-            instructions += " Maintain regular care and monitor for potential changes in release readiness.";
+            instructions.Add("Maintain regular care and monitor for potential changes in release readiness.");
         }
 
-        if (GetCareHistory() != "")
-        {
-            instructions += " Review the owl's treatment history and care notes before providing care.";
-        }
-
-        return instructions;
+        return string.Join(" ", instructions);
     }
 
     /// <summary>
